@@ -15,8 +15,6 @@ Modify your query from Exercise 8-2 to include only those customers who have at 
 */
 
 USE sakila;
-SELECT  p.customer_id as 'customer id', 
-        COUNT(*), 
-        SUM(p.amount) as 'total payment' FROM payment p
+SELECT  p.customer_id, COUNT(*), SUM(p.amount) FROM payment p
 GROUP BY p.customer_id
 HAVING COUNT(*) >= 40;
