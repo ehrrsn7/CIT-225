@@ -30,3 +30,11 @@ The foregoing query returns the following result set, and so should the new quer
 
 USE sakila;
 
+SELECT fa.actor_id, fa.film_id
+FROM film_actor fa
+WHERE EXISTS (
+    SELECT NULL FROM actor a
+    WHERE fa.actor_id = a.actor_id AND a.last_name = "MONROE")
+AND EXISTS (
+    SELECT NULL FROM film f
+    WHERE fa.film_id = f.film_id AND f.rating = "PG");

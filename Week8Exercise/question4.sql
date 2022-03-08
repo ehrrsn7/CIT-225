@@ -30,3 +30,8 @@ The foregoing query returns the following result set, and so should the new quer
 
 USE sakila;
 
+SELECT fa.actor_id, fa.film_id FROM film_actor fa
+WHERE (fa.actor_id, fa.film_id) IN (
+    SELECT actor_id, film_id FROM actor a 
+    CROSS JOIN film f 
+    ON a.last_name = 'MONROE' AND f.rating = 'PG');

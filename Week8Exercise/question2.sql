@@ -25,3 +25,11 @@ It should return 64 rows, like:
 
 USE sakila;
 
+SELECT f.title FROM film f
+WHERE EXISTS (
+    SELECT NULL
+    FROM film_category fc
+    INNER JOIN category c 
+    ON fc.category_id = c.category_id
+    WHERE c.name = "Action" AND fc.film_id = f.film_id
+);

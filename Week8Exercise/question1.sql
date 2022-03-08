@@ -25,3 +25,10 @@ It should return 64 rows, like:
 
 USE sakila;
 
+SELECT f.title FROM film f
+WHERE f.film_id IN (
+    SELECT fc.film_id FROM film_category fc
+    INNER JOIN category c
+    ON fc.category_id = c.category_id
+    WHERE c.name = 'Action'
+);
